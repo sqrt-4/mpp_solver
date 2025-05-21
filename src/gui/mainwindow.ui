@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1356</width>
+    <height>909</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #e8eaf6;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="equationsTable">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>60</y>
+      <width>531</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>531</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Стиль таблицы */
+QTableWidget {
+    background-color: #e8eaf6;           /* Цвет фона таблицы */
+    color: #1a237e;                      /* Цвет текста */
+    border: 2px solid #3f51b5;           /* Рамка таблицы */
+    border-radius: 10px;                 /* Скругляем углы таблицы */
+    gridline-color: #c5cae9;             /* Цвет линий сетки */
+    font-size: 14px;                     /* Размер шрифта */
+    selection-background-color: #d1d9ff; /* Цвет выделенной строки */
+    selection-color: #1a237e;            /* Цвет текста при выделении */
+    word-wrap: normal;                   /* Отключаем перенос текста */
+    overflow: hidden;                    /* Скрываем все, что выходит за пределы */
+}
+
+/* Стиль шапки таблицы (заголовки столбцов) */
+QTableWidget::horizontalHeader {
+    background-color: #e8eaf6;           /* Цвет фона шапки, такой же как у таблицы */
+    color: #1a237e;                      /* Цвет текста в шапке */
+    font-size: 16px;                     /* Размер шрифта для шапки */
+    border: none;                        /* Убираем рамку */
+    padding: 5px;                        /* Отступы в шапке */
+}
+
+QTableWidget::horizontalHeader::section {
+    border: 1px solid #c5cae9;           /* Светлая рамка вокруг заголовков */
+    padding: 6px 10px;                   /* Отступы в заголовке */
+    text-align: center;                  /* Выравнивание текста по центру */
+}
+
+/* Стиль номеров строк */
+QTableWidget::verticalHeader {
+    background-color: #e8eaf6;           /* Цвет фона номеров строк */
+    color: #1a237e;                      /* Цвет текста для номеров строк */
+    font-size: 14px;                     /* Размер шрифта */
+    border: none;                        /* Убираем рамку */
+    padding: 6px 10px;                   /* Отступы для номеров строк */
+}
+
+QTableWidget::verticalHeader::section {
+    border: none;                        /* Убираем рамку */
+    padding: 6px 10px;                   /* Отступы */
+    text-align: center;                  /* Выравнивание текста по центру */
+}
+
+/* Стиль ячеек таблицы */
+QTableWidget::item {
+    padding: 6px 10px;                   /* Отступы в ячейках */
+    background-color: transparent;      /* Прозрачный фон ячеек */
+    border: none;                        /* Без рамки */
+    white-space: nowrap;                 /* Отключаем перенос текста в ячейках */
+    text-align: top;                     /* Выравнивание текста по верхнему краю */
+    border-radius: 10px;                 /* Скругляем углы ячеек */
+    font-size: 14px;                     /* Размер шрифта текста */
+    color: #1a237e;                      /* Цвет текста */
+}
+
+/* Стиль для горизонтальной прокрутки */
+QScrollBar:horizontal {
+    background-color: #e8eaf6;           /* Фон горизонтальной полосы прокрутки */
+    height: 12px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #3f51b5;           /* Цвет ручки прокрутки */
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #5c6bc0;           /* Светлее при наведении */
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeEqButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>110</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3f51b5; /* светло-темно-синий */
+    color: white;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #303f9f; /* чуть темнее при нажатии */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addEqButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>70</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3f51b5; /* светло-темно-синий */
+    color: white;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #303f9f; /* чуть темнее при нажатии */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="calculateButton">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>270</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3f51b5; /* светло-темно-синий */
+    color: white;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #303f9f; /* чуть темнее при нажатии */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Вычислить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="plotButton">
+    <property name="geometry">
+     <rect>
+      <x>1110</x>
+      <y>790</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3f51b5; /* светло-темно-синий */
+    color: white;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #303f9f; /* чуть темнее при нажатии */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Построить график</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="axis1TF">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>790</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #e8eaf6; /* светло-синий фон */
+    color: #1a237e;            /* тёмно-синий текст */
+    border: 2px solid #3f51b5; /* граница, как у кнопки */
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>800</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Ось 1:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>800</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Ось 2:</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="axis2TF">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>790</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #e8eaf6; /* светло-синий фон */
+    color: #1a237e;            /* тёмно-синий текст */
+    border: 2px solid #3f51b5; /* граница, как у кнопки */
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+/* Стили для вертикального и горизонтального ползунков */
+QTextEdit::vertical scrollbar, QTextEdit::horizontal scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+/* Стили для самого ползунка */
+QTextEdit::vertical scrollbar::handle, QTextEdit::horizontal scrollbar::handle {
+    background-color: #3f51b5; /* цвет ползунка */
+    border-radius: 4px;
+}
+
+/* При наведении на ползунок */
+QTextEdit::vertical scrollbar::handle:hover, QTextEdit::horizontal scrollbar::handle:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+/* Убираем стрелки на ползунке */
+QTextEdit::vertical scrollbar::add-line, QTextEdit::horizontal scrollbar::add-line,
+QTextEdit::vertical scrollbar::sub-line, QTextEdit::horizontal scrollbar::sub-line {
+    background: transparent;
+}
+
+/* Убираем фон страниц прокрутки */
+QTextEdit::vertical scrollbar::add-page, QTextEdit::horizontal scrollbar::add-page,
+QTextEdit::vertical scrollbar::sub-page, QTextEdit::horizontal scrollbar::sub-page {
+    background: transparent;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="errorsLabel">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>130</y>
+      <width>301</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #c62828;             /* красный текст */
+    background-color: #fff5f5;  /* очень светлый красный фон */
+    border: 1px solid #c62828;  /* тонкая красная рамка */
+    border-radius: 10px;        /* скруглённые углы */
+    padding: 6px 10px;          /* отступы внутри */
+    font-size: 13px;            /* тот же размер шрифта */
+}
+font: 11pt &quot;SimSun&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>21</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Ta</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>140</y>
+      <width>21</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Tb</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="ta_textEdit">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>120</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #e8eaf6; /* светло-синий фон */
+    color: #1a237e;            /* тёмно-синий текст */
+    border: 2px solid #3f51b5; /* граница, как у кнопки */
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+/* Стили для вертикального и горизонтального ползунков */
+QTextEdit::vertical scrollbar, QTextEdit::horizontal scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+/* Стили для самого ползунка */
+QTextEdit::vertical scrollbar::handle, QTextEdit::horizontal scrollbar::handle {
+    background-color: #3f51b5; /* цвет ползунка */
+    border-radius: 4px;
+}
+
+/* При наведении на ползунок */
+QTextEdit::vertical scrollbar::handle:hover, QTextEdit::horizontal scrollbar::handle:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+/* Убираем стрелки на ползунке */
+QTextEdit::vertical scrollbar::add-line, QTextEdit::horizontal scrollbar::add-line,
+QTextEdit::vertical scrollbar::sub-line, QTextEdit::horizontal scrollbar::sub-line {
+    background: transparent;
+}
+
+/* Убираем фон страниц прокрутки */
+QTextEdit::vertical scrollbar::add-page, QTextEdit::horizontal scrollbar::add-page,
+QTextEdit::vertical scrollbar::sub-page, QTextEdit::horizontal scrollbar::sub-page {
+    background: transparent;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="tb_textEdit">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>120</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #e8eaf6; /* светло-синий фон */
+    color: #1a237e;            /* тёмно-синий текст */
+    border: 2px solid #3f51b5; /* граница, как у кнопки */
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+/* Стили для вертикального и горизонтального ползунков */
+QTextEdit::vertical scrollbar, QTextEdit::horizontal scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+/* Стили для самого ползунка */
+QTextEdit::vertical scrollbar::handle, QTextEdit::horizontal scrollbar::handle {
+    background-color: #3f51b5; /* цвет ползунка */
+    border-radius: 4px;
+}
+
+/* При наведении на ползунок */
+QTextEdit::vertical scrollbar::handle:hover, QTextEdit::horizontal scrollbar::handle:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+/* Убираем стрелки на ползунке */
+QTextEdit::vertical scrollbar::add-line, QTextEdit::horizontal scrollbar::add-line,
+QTextEdit::vertical scrollbar::sub-line, QTextEdit::horizontal scrollbar::sub-line {
+    background: transparent;
+}
+
+/* Убираем фон страниц прокрутки */
+QTextEdit::vertical scrollbar::add-page, QTextEdit::horizontal scrollbar::add-page,
+QTextEdit::vertical scrollbar::sub-page, QTextEdit::horizontal scrollbar::sub-page {
+    background: transparent;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="ts_textEdit">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>190</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #e8eaf6; /* светло-синий фон */
+    color: #1a237e;            /* тёмно-синий текст */
+    border: 2px solid #3f51b5; /* граница, как у кнопки */
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+/* Стили для вертикального и горизонтального ползунков */
+QTextEdit::vertical scrollbar, QTextEdit::horizontal scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+/* Стили для самого ползунка */
+QTextEdit::vertical scrollbar::handle, QTextEdit::horizontal scrollbar::handle {
+    background-color: #3f51b5; /* цвет ползунка */
+    border-radius: 4px;
+}
+
+/* При наведении на ползунок */
+QTextEdit::vertical scrollbar::handle:hover, QTextEdit::horizontal scrollbar::handle:hover {
+    background-color: #5c6bc0; /* светлее при наведении */
+}
+
+/* Убираем стрелки на ползунке */
+QTextEdit::vertical scrollbar::add-line, QTextEdit::horizontal scrollbar::add-line,
+QTextEdit::vertical scrollbar::sub-line, QTextEdit::horizontal scrollbar::sub-line {
+    background: transparent;
+}
+
+/* Убираем фон страниц прокрутки */
+QTextEdit::vertical scrollbar::add-page, QTextEdit::horizontal scrollbar::add-page,
+QTextEdit::vertical scrollbar::sub-page, QTextEdit::horizontal scrollbar::sub-page {
+    background: transparent;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>210</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Момент времени T*</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="resTable">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>350</y>
+      <width>611</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget {
+    background-color: #e8eaf6;            /* светло-синий фон */
+    color: #1a237e;                       /* тёмный текст */
+    border: 2px solid #3f51b5;            /* рамка, как у textedit */
+    border-radius: 10px;
+    gridline-color: #c5cae9;              /* мягкие линии сетки */
+    font-size: 14px;
+    selection-background-color: #d1d9ff;  /* светло-синее выделение */
+    selection-color: #1a237e;
+}
+
+QHeaderView::section {
+    background-color: #e8eaf6;            /* шапка — в цвет таблицы */
+    color: #1a237e;
+    font-weight: bold;
+    border: none;
+    padding: 6px;
+}
+
+QTableCornerButton::section {
+    background-color: #e8eaf6;            /* убираем белый угол */
+    border: none;
+}
+
+/* Ячейки */
+QTableWidget::item {
+    padding: 6px;
+    background-color: transparent;
+    border: none;
+}
+
+QTableWidget::item:selected {
+    background-color: #d1d9ff;
+    color: #1a237e;
+}
+
+/* Поле ввода при редактировании ячеек */
+QLineEdit {
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    background-color: #5c6bc0;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>10</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Введите задачу:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>50</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Параметры задачи</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>80</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #3f51b5; /* тот же оттенок синего, что и кнопка */
+    font-size: 16px;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Ошибки</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="PlotLabel">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>340</y>
+      <width>511</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    qproperty-scaledContents: true;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
